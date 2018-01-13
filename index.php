@@ -191,7 +191,7 @@ else
 						{
 							$down = false;
 							echo "<span style='color:#00CC00;'><b>Computer Responded!</b></span><br />";
-							echo "<p><a href='?computer=" . $selectedComputer . "'>\<Return back to home\></a></p>";
+							echo "<p><a href='?computer=" . $selectedComputer . "'>Return back to home</a></p>";
 							$show_form = false;
 						}
 						else
@@ -203,7 +203,7 @@ else
 					echo "</p>";
 					if ($down == true)
 					{
-						echo "<p style='color:#CC0000;'><b>FAILED!</b> " . $COMPUTER_NAME[$selectedComputer] . " doesn't seem to be waking up... Try again?</p><p>(Or <a href='?computer=" . $selectedComputer . "'>\<Return back to home\></a>.)</p>";
+						echo "<p style='color:#CC0000;'><b>FAILED!</b> " . $COMPUTER_NAME[$selectedComputer] . " doesn't seem to be waking up... Try again?</p><p>(Or <a href='?computer=" . $selectedComputer . "'>Return back to home</a>.)</p>";
 					}
 				}
 				elseif ($approved_sleep)
@@ -232,7 +232,7 @@ else
 							{
 								$down = true;
 								echo "<span style='color:#00CC00;'><b>Computer Not Responding! (It's off!)</b></span><br />";
-								echo "<p><a href='?computer=" . $selectedComputer . "'>\<Return back to home\></a></p>";
+								echo "<p><a href='?computer=" . $selectedComputer . "'>Return back to home</a></p>";
 								$show_form = false;
 								
 							}
@@ -245,7 +245,7 @@ else
 						echo "</p>";
 						if ($down == false)
 						{
-							echo "<p style='color:#CC0000;'><b>FAILED!</b> " . $COMPUTER_NAME[$selectedComputer] . " doesn't seem to be falling asleep... Try again?</p><p>(Or <a href='?computer=" . $selectedComputer . "'>\<Return back to home\></a>.)</p>";
+							echo "<p style='color:#CC0000;'><b>FAILED!</b> " . $COMPUTER_NAME[$selectedComputer] . " doesn't seem to be falling asleep... Try again?</p><p>(Or <a href='?computer=" . $selectedComputer . "'>Return back to home</a>.)</p>";
 						}
 					}
 					curl_close($ch);
