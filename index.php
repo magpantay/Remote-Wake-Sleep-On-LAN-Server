@@ -169,7 +169,7 @@ else
 					else
 					{
 						$asleep = false;
-						echo "<h5>" . $COMPUTER_NAME[$selectedComputer] . " is currently [ <span style='color:#00CC00;'>[awake]</span>.</h5>";
+						echo "<h5>" . $COMPUTER_NAME[$selectedComputer] . " is currently <span style='color:#00CC00;'>[awake]</span>.</h5>";
 					}
 				}
 
