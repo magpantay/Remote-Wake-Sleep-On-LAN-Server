@@ -164,12 +164,12 @@ else
 					if ($pinginfo == "")
 					{
 						$asleep = true;
-						echo "<h5>" . $COMPUTER_NAME[$selectedComputer] . " is presently <span style='color:#CC0000';>asleep</span>.</h5>";
+						echo "<h5>" . $COMPUTER_NAME[$selectedComputer] . " is currently [ <span style='color:#CC0000';>asleep</span> ].</h5>";
 					}
 					else
 					{
 						$asleep = false;
-						echo "<h5>" . $COMPUTER_NAME[$selectedComputer] . " is presently <span style='color:#00CC00;'>awake</span>.</h5>";
+						echo "<h5>" . $COMPUTER_NAME[$selectedComputer] . " is currently [ <span style='color:#00CC00;'>awake</span> ].</h5>";
 					}
 				}
 
@@ -179,19 +179,19 @@ else
                 {
                 	echo "<p><span style='color:#00CC00;'>Approved!</span> Sending WOL Command...</p>";
 					exec ('wakeonlan ' . $COMPUTER_MAC[$selectedComputer]);
-					echo "<p><span style='color:#00CC00;'>Command Sent.</span> Waiting for " . $COMPUTER_NAME[$selectedComputer] . " to wake up...</p><p>";
+					echo "<p><b><span style='color:#00CC00;'>Command Sent.</span></b> Waiting for " . $COMPUTER_NAME[$selectedComputer] . " to wake up...</p><p>";
 					$count = 1;
 					$down = true;
 					while ($count <= $MAX_PINGS && $down == true)
 					{
-						echo "Ping " . $count . "...";
+						echo "Ping " . $count . ": ";
 						$pinginfo = exec("ping -c 1 " . $COMPUTER_LOCAL_IP[$selectedComputer]);
 						$count++;
 						if ($pinginfo != "")
 						{
 							$down = false;
 							echo "<span style='color:#00CC00;'><b>Computer Responded!</b></span><br />";
-							echo "<p><a href='?computer=" . $selectedComputer . "'>Return to the Wake/Sleep Control Home</a></p>";
+							echo "<p><a href='?computer=" . $selectedComputer . "'>\<Return back to home\></a></p>";
 							$show_form = false;
 						}
 						else
@@ -203,7 +203,7 @@ else
 					echo "</p>";
 					if ($down == true)
 					{
-						echo "<p style='color:#CC0000;'><b>FAILED!</b> " . $COMPUTER_NAME[$selectedComputer] . " doesn't seem to be waking up... Try again?</p><p>(Or <a href='?computer=" . $selectedComputer . "'>Return to the Wake/Sleep Control Home</a>.)</p>";
+						echo "<p style='color:#CC0000;'><b>FAILED!</b> " . $COMPUTER_NAME[$selectedComputer] . " doesn't seem to be waking up... Try again?</p><p>(Or <a href='?computer=" . $selectedComputer . "'>\<Return back to home\></a>.)</p>";
 					}
 				}
 				elseif ($approved_sleep)
@@ -225,14 +225,14 @@ else
 						$down = false;
 						while ($count <= $MAX_PINGS && $down == false)
 						{
-							echo "Ping #" . $count . "...";
+							echo "Ping #" . $count . ": ";
 							$pinginfo = exec("ping -c 1 " . $COMPUTER_LOCAL_IP[$selectedComputer]);
 							$count++;
 							if ($pinginfo == "")
 							{
 								$down = true;
 								echo "<span style='color:#00CC00;'><b>Computer Not Responding! (It's off!)</b></span><br />";
-								echo "<p><a href='?computer=" . $selectedComputer . "'>Return to the Wake/Sleep Control Home</a></p>";
+								echo "<p><a href='?computer=" . $selectedComputer . "'>\<Return back to home\></a></p>";
 								$show_form = false;
 								
 							}
@@ -245,7 +245,7 @@ else
 						echo "</p>";
 						if ($down == false)
 						{
-							echo "<p style='color:#CC0000;'><b>FAILED!</b> " . $COMPUTER_NAME[$selectedComputer] . " doesn't seem to be falling asleep... Try again?</p><p>(Or <a href='?computer=" . $selectedComputer . "'>Return to the Wake/Sleep Control Home</a>.)</p>";
+							echo "<p style='color:#CC0000;'><b>FAILED!</b> " . $COMPUTER_NAME[$selectedComputer] . " doesn't seem to be falling asleep... Try again?</p><p>(Or <a href='?computer=" . $selectedComputer . "'>\<Return back to home\></a>.)</p>";
 						}
 					}
 					curl_close($ch);
