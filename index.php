@@ -41,7 +41,7 @@ else
 <!DOCTYPE html>
 <html lang="en" >
   <head>
-    <title>Remote Wake/Sleep-On-LAN</title>
+    <title>To The Window, To The WOL!</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A utility for remotely waking/sleeping a Windows computer via a Raspberry Pi">
@@ -177,9 +177,9 @@ else
 
                 if ($approved_wake)
                 {
-                	echo "<p>Approved. Sending WOL Command...</p>";
+                	echo "<p><span style='color:#00CC00;'>Approved!</span> Sending WOL Command...</p>";
 					exec ('wakeonlan ' . $COMPUTER_MAC[$selectedComputer]);
-					echo "<p>Command Sent. Waiting for " . $COMPUTER_NAME[$selectedComputer] . " to wake up...</p><p>";
+					echo "<p><span style='color:#00CC00;'>Command Sent.</span> Waiting for " . $COMPUTER_NAME[$selectedComputer] . " to wake up...</p><p>";
 					$count = 1;
 					$down = true;
 					while ($count <= $MAX_PINGS && $down == true)
@@ -190,13 +190,13 @@ else
 						if ($pinginfo != "")
 						{
 							$down = false;
-							echo "<span style='color:#00CC00;'><b>It's Alive!</b></span><br />";
+							echo "<span style='color:#00CC00;'><b>Computer Responded!</b></span><br />";
 							echo "<p><a href='?computer=" . $selectedComputer . "'>Return to the Wake/Sleep Control Home</a></p>";
 							$show_form = false;
 						}
 						else
 						{
-							echo "<span style='color:#CC0000;'><b>Still Down.</b></span><br />";
+							echo "<span style='color:#CC0000;'><b>Computer Not Responding...</b></span><br />";
 						}
 						sleep($SLEEP_TIME);
 					}
@@ -208,7 +208,7 @@ else
 				}
 				elseif ($approved_sleep)
 				{
-					echo "<p>Approved. Sending Sleep Command...</p>";
+					echo "<p><span style='color:#00CC00;'>Approved!</span> Sending Sleep Command...</p>";
 					$ch = curl_init();
 					curl_setopt($ch, CURLOPT_URL, "http://" . $COMPUTER_LOCAL_IP[$selectedComputer] . ":" . $COMPUTER_SLEEP_CMD_PORT . "/" .  $COMPUTER_SLEEP_CMD);
 					curl_setopt($ch, CURLOPT_TIMEOUT, 5);
@@ -225,20 +225,20 @@ else
 						$down = false;
 						while ($count <= $MAX_PINGS && $down == false)
 						{
-							echo "Ping " . $count . "...";
+							echo "Ping #" . $count . "...";
 							$pinginfo = exec("ping -c 1 " . $COMPUTER_LOCAL_IP[$selectedComputer]);
 							$count++;
 							if ($pinginfo == "")
 							{
 								$down = true;
-								echo "<span style='color:#00CC00;'><b>It's Asleep!</b></span><br />";
+								echo "<span style='color:#00CC00;'><b>Computer Not Responding! (It's off!)</b></span><br />";
 								echo "<p><a href='?computer=" . $selectedComputer . "'>Return to the Wake/Sleep Control Home</a></p>";
 								$show_form = false;
 								
 							}
 							else
 							{
-								echo "<span style='color:#CC0000;'><b>Still Awake.</b></span><br />";
+								echo "<span style='color:#CC0000;'><b>Computer Still Responding...</b></span><br />";
 							}
 							sleep($SLEEP_TIME);
 						}
