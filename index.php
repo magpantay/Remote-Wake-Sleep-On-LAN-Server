@@ -164,12 +164,12 @@ else
 					if ($pinginfo == "")
 					{
 						$asleep = true;
-						echo "<h5>" . $COMPUTER_NAME[$selectedComputer] . " is presently asleep.</h5>";
+						echo "<h5>" . $COMPUTER_NAME[$selectedComputer] . " is presently <span style='color:#CC0000';>asleep</span>.</h5>";
 					}
 					else
 					{
 						$asleep = false;
-						echo "<h5>" . $COMPUTER_NAME[$selectedComputer] . " is presently awake.</h5>";
+						echo "<h5>" . $COMPUTER_NAME[$selectedComputer] . " is presently <span style='color:#00CC00;'>awake</span>.</h5>";
 					}
 				}
 
